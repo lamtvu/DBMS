@@ -99,7 +99,7 @@ from Xe
 create or alter function f_XeTrongKhoan(@tu int,@den int)
 returns @tableXe table
 (
- ID	int IDENTITY(1,1) PRIMARY KEY,
+ ID	int,
  tenXe nvarchar(255),
  hinh varbinary(MAX),
  gia int,
@@ -112,8 +112,11 @@ returns @tableXe table
 AS
 Begin
 insert into @tableXe
-SELECT ID 
+SELECT *
 FROM Xe
---where
+Where gia>=@tu and gia<=@den
 return
 End
+
+select *
+from f_XeTrongKhoan(10,30000)
