@@ -1,0 +1,10 @@
+C:\Users\lamtv\OneDrive\Máy tính\DBMS\DBMS\DEMO\QLBanXe\bin\Debug\QLBanXe.exe.config
+C:\Users\lamtv\OneDrive\Máy tính\DBMS\DBMS\DEMO\QLBanXe\bin\Debug\QLBanXe.exe
+C:\Users\lamtv\OneDrive\Máy tính\DBMS\DBMS\DEMO\QLBanXe\bin\Debug\QLBanXe.pdb
+C:\Users\lamtv\OneDrive\Máy tính\DBMS\DBMS\DEMO\QLBanXe\obj\Debug\QLBanXe.csprojAssemblyReference.cache
+C:\Users\lamtv\OneDrive\Máy tính\DBMS\DBMS\DEMO\QLBanXe\obj\Debug\QLBanXe.Form1.resources
+C:\Users\lamtv\OneDrive\Máy tính\DBMS\DBMS\DEMO\QLBanXe\obj\Debug\QLBanXe.Properties.Resources.resources
+C:\Users\lamtv\OneDrive\Máy tính\DBMS\DBMS\DEMO\QLBanXe\obj\Debug\QLBanXe.csproj.GenerateResource.cache
+C:\Users\lamtv\OneDrive\Máy tính\DBMS\DBMS\DEMO\QLBanXe\obj\Debug\QLBanXe.csproj.CoreCompileInputs.cache
+C:\Users\lamtv\OneDrive\Máy tính\DBMS\DBMS\DEMO\QLBanXe\obj\Debug\QLBanXe.exe
+C:\Users\lamtv\OneDrive\Máy tính\DBMS\DBMS\DEMO\QLBanXe\obj\Debug\QLBanXe.pdb

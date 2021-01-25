@@ -23,6 +23,7 @@ create table NguoiDung(
  ngaySinh DateTime,
  ChucVu char(20)
 );
+alter table NguoiDung ADD  DiaChi nvarchar(MAX)
 
 create table BinhLuan(
  ID int IDENTITY(1,1) PRIMARY KEY,
@@ -37,6 +38,8 @@ create table DanhGia(
  SoSao int,
  constraint DanhGia_pk PRIMARY KEY(taiKhoan,IDxe)
 );
+ALTER TABLE DanhGia
+ALTER COLUMN SoSao float;
 
 create table GioHang(
  taiKhoan nvarchar(50),
@@ -81,21 +84,6 @@ ALTER TABLE DaGiaoDich
 ADD CONSTRAINT FK_DaGiaoDich_Xe FOREIGN KEY (IDxe) REFERENCES Xe(ID); 
 
 
-create or alter view v_XeMuaNhieu
-as
-select*
-from Xe
-
-create or alter view v_XeMac
-as
-select *
-from Xe
-
-create or alter view v_XeRe
-as
-select*
-from Xe
-
 create or alter function f_XeTrongKhoan(@tu int,@den int)
 returns @tableXe table
 (
@@ -118,5 +106,24 @@ Where gia>=@tu and gia<=@den
 return
 End
 
-select *
-from f_XeTrongKhoan(10,30000)
+create or alter trigger tg_AddGioHang 
+on GioHang
+for insert
+as
+begin
+	DECLARE @SLTonKho int
+	select @SLTonKho = xe.SLTonKho
+	from Xe,inserted
+	where Xe.ID = inserted.IDXe
+	if(@SLTonKho<=0)
+	begin
+		ROLLBACK;
+	end
+end
+
+insert into GioHang values('TLam',51)
+
+delete from GioHang where IDXe = 51
+
+exec sp_SortBeDenLon
+
