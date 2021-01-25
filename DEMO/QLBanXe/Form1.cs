@@ -41,7 +41,7 @@ namespace QLBanXe
 
         private void btLogin_Click(object sender, EventArgs e)
         {
-            string ConnectionString = "Data Source = DESKTOP-6TE1KM3; Initial Catalog = DBQLXe;"+"User ID="+textBox1.Text+";Password="+textBox2.Text+";Integrated Security = True";
+            string ConnectionString = "Network Library=dbmssocn;Network Address="+textBox3.Text+"; Initial Catalog = DBQLXe;" + "User ID="+textBox1.Text+";Password="+textBox2.Text+";Integrated Security = True";
             MessageBox.Show(ConnectionString);
             try
             {
@@ -56,6 +56,11 @@ namespace QLBanXe
             {
                 MessageBox.Show("Thai Bai");
             }
+        }
+
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
