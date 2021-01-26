@@ -252,24 +252,24 @@ namespace QLBanXe
                 runQuery("create user " + txbTaiKhoan.Text + " for login " + txbTaiKhoan.Text + ";");
                 MessageBox.Show("insert into NguoiDung(taiKhoan,Ten,ChucVu) values(" + "'" + txbTaiKhoan.Text + "'" + "," + "'" + tbTenNguoiDung.Text + "'" + "," + "'" + cbbChucVu.Text.Trim() + "'" + ")");
                 runQuery("insert into NguoiDung(taiKhoan,ten,ChucVu) values(" + "'" + txbTaiKhoan.Text + "'" + "," + "'" + tbTenNguoiDung.Text + "'" + "," + "'" + cbbChucVu.Text.Trim() + "'" + ")");
-
+                switch (cbbChucVu.Text.Trim())
+                {
+                    case "admin":
+                        runQuery("alter role admin_role add member[" + txbTaiKhoan.Text + "];");
+                        break;
+                    case "quanly":
+                        runQuery("alter role quanly_role add member[" + txbTaiKhoan.Text + "];");
+                        break;
+                    default:
+                        runQuery("alter role nguoidung_role add member[" + txbTaiKhoan.Text + "];");
+                        break;
+                }
             }
             catch (System.Data.SqlClient.SqlException)
             {
                 MessageBox.Show("Tai khoan da ton tai");
             }
-            switch (cbbChucVu.Text.Trim())
-            {
-                case "admin":
-                    runQuery("alter role admin_role add member[" + txbTaiKhoan.Text + "];");
-                    break;
-                case "quanly":
-                    runQuery("alter role quanly_role add member[" + txbTaiKhoan.Text + "];");
-                    break;
-                default:
-                    runQuery("alter role nguoidung_role add member[" + txbTaiKhoan.Text + "];");
-                    break;
-            }
+
 
         }
 
@@ -287,14 +287,15 @@ namespace QLBanXe
 
         private void button11_Click(object sender, EventArgs e)
         {
-            try
-            {
-                runQuery("insert into DanhGia(taiKhoan,IDxe,NgayGiaDich) values(" + "'" + authUser + "'" + "," + dgvXe.CurrentRow.Cells["ID"].Value + "," + DateTime.Now + ")");
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Bạn Không Có Quyền");
-            }
+            //try
+            //{
+                MessageBox.Show("insert into DanhGia(taiKhoan,IDxe,NgayGiaDich) values(" + "'" + authUser + "'" + "," + dgvXe.CurrentRow.Cells["ID"].Value + "," + "'" + DateTime.Now.Year + "/" + DateTime.Now.Month + "/" + DateTime.Now.Day + "'" + ")");
+                runQuery("insert into DaGiaoDich(taiKhoan,IDxe,NgayGiaoDich) values(" + "'" + authUser + "'" + "," + dgvXe.CurrentRow.Cells["ID"].Value + "," +"'"+ DateTime.Now.Year+"-"+DateTime.Now.Month+"-"+DateTime.Now.Day+"'"+")");
+            //}
+            //catch (Exception)
+            //{
+            //    MessageBox.Show("Bạn Không Có Quyền");
+            //}
         }
 
         private void btnXoaNguoiDung_Click(object sender, EventArgs e)
@@ -355,7 +356,7 @@ namespace QLBanXe
 
             try
             {
-                runQuery("Update Hang set tenHang="+"'"+textBox6.Text+"'"+"where ID="+dgvHang.CurrentRow.Cells["ID"]);
+                runQuery("Update Hang set tenHang="+"'"+textBox6.Text+"'"+"where ID="+dgvHang.CurrentRow.Cells["ID"].Value);
             }
             catch (Exception)
             {

@@ -24,6 +24,7 @@ create role nguoidung_role;
 grant select to quanly_role
 grant update,insert on Xe to quanly_role
 grant update on Hang to quanly_role
+GRANT EXECUTE on sp_SortBeDenLon to quanly_role
 create role quanly_role;
 
 
