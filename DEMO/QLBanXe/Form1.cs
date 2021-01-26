@@ -300,11 +300,13 @@ namespace QLBanXe
 
         private void btnXoaNguoiDung_Click(object sender, EventArgs e)
         {
+
             try
             {
-                runQuery("DROP user " + dgvNguoiDung.CurrentRow.Cells["taiKhoan"].Value);
-                runQuery("DROP Login " + dgvNguoiDung.CurrentRow.Cells["taiKhoan"].Value);
-                runQuery("DROP Login " + dgvNguoiDung.CurrentRow.Cells["taiKhoan"].Value);
+                runQuery("DROP user " +dgvNguoiDung.CurrentRow.Cells["taiKhoan"].Value);
+                runQuery("DROP Login " +dgvNguoiDung.CurrentRow.Cells["taiKhoan"].Value);
+                runQuery("Delete from DaGiaoDich where taiKhoan="+dgvNguoiDung.CurrentRow.Cells["taiKhoan"].Value);
+                runQuery("Delete from DanhGia where taiKhoan="+dgvNguoiDung.CurrentRow.Cells["taiKhoan"].Value);
                 runQuery("Delete from NguoiDung where taiKhoan=" + dgvNguoiDung.CurrentRow.Cells["taiKhoan"].Value);
             }
             catch (Exception)
