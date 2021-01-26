@@ -258,7 +258,7 @@ namespace QLBanXe
             {
                 MessageBox.Show("Tai khoan da ton tai");
             }
-            switch (cbbChucVu.Text)
+            switch (cbbChucVu.Text.Trim())
             {
                 case "admin":
                     runQuery("alter role admin_role add member[" + txbTaiKhoan.Text + "];");
@@ -283,6 +283,117 @@ namespace QLBanXe
             {
                 MessageBox.Show("Bạn Không Có Quyền");
             }
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                runQuery("insert into DanhGia(taiKhoan,IDxe,NgayGiaDich) values(" + "'" + authUser + "'" + "," + dgvXe.CurrentRow.Cells["ID"].Value + "," + DateTime.Now + ")");
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Bạn Không Có Quyền");
+            }
+        }
+
+        private void btnXoaNguoiDung_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                runQuery("DROP user " + dgvNguoiDung.CurrentRow.Cells["taiKhoan"].Value);
+                runQuery("DROP Login " + dgvNguoiDung.CurrentRow.Cells["taiKhoan"].Value);
+                runQuery("DROP Login " + dgvNguoiDung.CurrentRow.Cells["taiKhoan"].Value);
+                runQuery("Delete from NguoiDung where taiKhoan=" + dgvNguoiDung.CurrentRow.Cells["taiKhoan"].Value);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Bạn Không Có Quyền");
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                runQuery("Delete from Xe where ID=" + dgvXe.CurrentRow.Cells["ID"].Value);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Bạn Không Có Quyền");
+
+            }
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                runQuery("insert into Hang(tenHang) values(" + "'" + textBox6.Text + "'" + ")");
+            }
+            catch(Exception)
+            {
+                MessageBox.Show("Bạn Không Có Quyền");
+            }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                runQuery("Delete from Hang where ID=" + dgvHang.CurrentRow.Cells["ID"].Value);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Bạn Không Có Quyền");
+
+            }
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                runQuery("Update Hang set tenHang="+"'"+textBox6.Text+"'"+"where ID="+dgvHang.CurrentRow.Cells["ID"]);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Bạn Không Có Quyền");
+
+            }
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                runQuery("Delete from DaGiaoDich where taiKhoan=" + "'"+ dgvDaGiaoDich.CurrentRow.Cells["taiKhoan"].Value+"'"+" and IDxe="+dgvDaGiaoDich.CurrentRow.Cells["IDxe"].Value);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Bạn Không Có Quyền");
+
+            }
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                runQuery("Delete from DanhGia where taiKhoan="+"'" + dgvDanhGia.CurrentRow.Cells["taiKhoan"].Value+"'"+" and IDxe="+dgvDanhGia.CurrentRow.Cells["IDxe"].Value);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Bạn Không Có Quyền");
+
+            }
+        }
+
+        private void dgvHang_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            textBox6.Text = dgvHang.CurrentRow.Cells["tenHang"].Value.ToString();
         }
     }
 }
