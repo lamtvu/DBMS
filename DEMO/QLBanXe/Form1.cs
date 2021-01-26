@@ -317,6 +317,8 @@ namespace QLBanXe
         {
             try
             {
+                runQuery("Delete from DaGiaoDich where IDxe="+dgvXe.CurrentRow.Cells["ID"].Value);
+                runQuery("Delete from DanhGia where IDxe="+dgvXe.CurrentRow.Cells["ID"].Value);
                 runQuery("Delete from Xe where ID=" + dgvXe.CurrentRow.Cells["ID"].Value);
             }
             catch (Exception)
